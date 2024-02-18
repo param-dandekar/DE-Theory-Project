@@ -16,6 +16,7 @@ The architecture of the PS-1021 is based on classic 8-bit CPUs such as the Intel
 #### Instruction set
 
 | Mnemonic   | Code | Description                |
+| :--------: | :--: | :------------------------: |
 | NOP        | 0000 | No operation               |
 | LDA <addr> | 0001 | Load from <addr> to reg A  |
 | LDB <addr> | 0010 | Load from <addr> to reg B  |
