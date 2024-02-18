@@ -6,6 +6,7 @@ class Processor {
     static const uint8_t MEM_SIZE = 0xff;
     private:
         uint8_t  memory[MEM_SIZE];   // Memory
+        uint8_t  bus  = 0x00;        // Bus
         uint8_t  regA = 0x00;        // General registers
         uint8_t  regB = 0x00;
         uint8_t  regC = 0x00;
