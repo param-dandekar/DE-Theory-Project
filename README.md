@@ -18,7 +18,7 @@ The architecture of the PS-1021 is based on classic 8-bit CPUs such as the Intel
 There are 16 instructions. Each instruction can be split into a number of microinstructions. The list of all microinstructions is:
 
 | Code | Description                                  |
-| :--: | :------------------------------------------: |
+| ---- | -------------------------------------------- |
 | IC   | Increment program counter                    |
 | SU   | Enable subtraction                           |
 | ZE   | If zero flag is 0, increment program counter |
@@ -41,7 +41,7 @@ There are 16 instructions. Each instruction can be split into a number of microi
 The instructions along with their respective microinstructions are:
 
 | Mnemonic   | Code | Description                | Microinstructions       |
-| :--------: | :--: | :------------------------: | :---------------------: |
+| ---------- | ---- | -------------------------- | ----------------------- |
 | NOP        | 0000 | No operation               | IC                      |
 | LDA <addr> | 0001 | Load from <addr> to reg A  | IR AW; RM WA; IC        |
 | LDB <addr> | 0010 | Load from <addr> to reg B  | IR AW; RM WB; IC        |
