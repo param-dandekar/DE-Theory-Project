@@ -11,7 +11,7 @@ This project aims to design and emulate the working of a rudimentary 8-bit proce
 
 ### Basic architecture
 
-The architecture of the PS-1021 is based on classic 8-bit CPUs such as the Intel 8085. There are three general purpose registers (A, B, C), one address register (AR), one flag register (FR), one instruction register (IR), and one program counter (PC). All registers are 8-bit except IR and PC which are 16-bit.
+The architecture of the PS-1021 is based on classic 8-bit CPUs such as the Intel 8085. There are three general purpose registers (A, B, C), one address register (AR), one flag register (FR), one instruction register (IR), and one program counter (PC). All registers are 8-bit except IR and PC which are 16-bit. The processor is able to address up to 256 bytes of RAM.
 
 #### Instruction set
 
@@ -21,22 +21,22 @@ There are 16 instructions. Each instruction can be split into a number of microi
 | ---- | -------------------------------------------- |
 | IC   | Increment program counter                    |
 | SU   | Enable subtraction                           |
-| ZE   | If zero flag is 0, increment program counter |
+| ZE   | Conditional jump                             |
 | RA   | Write from reg A to bus                      |
 | RB   | Write from reg B to bus                      |
 | RC   | Write from reg C to bus                      |
 | RM   | Write from memory to bus                     |
 | IR   | Write from instruction register to bus       |
 | AR   | Write from address register to bus           |
-| CR   | Write from program counter to bus            |
 | LR   | Write from ALU to bus                        |
 | WA   | Write from bus to reg A                      |
 | WB   | Write from bus to reg B                      |
 | WC   | Write from bus to reg C                      |
 | WM   | Write from bus to memory address             |
-| IW   | Write from bus to instruction register       |
 | AW   | Write from bus to address register           |
 | CW   | Write from bus to program counter            |
+
+<!-- ZE: If zero flag is 0, write from instruction register to bus, else write from program counter -->
 
 The instructions along with their respective microinstructions are:
 
@@ -55,10 +55,29 @@ The instructions along with their respective microinstructions are:
 | ADD        | 1010 | Add reg B to reg A         | LR RA; IC               |
 | SUB        | 1011 | Subtract reg B from reg A  | SU; LR RA; IC           |
 | JMP <val>  | 1100 | Set counter to <val>       | IR CW                   |
-| JMPZ <val> | 1101 | Jump to <val> if zero      | ZE; IR CW               |
+| JMNZ <val> | 1101 | Jump to <val> if not zero  | ZE; IR CW               |
 | SWP        | 1110 | Swap values in A and B     | RA AW; RB WA; AR WB; IC |
 | SWPC       | 1111 | Swap values in A and C     | RA AW; RC WA; AR WC; IC |
 
-For example, the instruction `LDA` to load a value from 
+For example, the instruction `LDA` to load a value from memory into register A is executed as follows:
+
+1. `IR AW`: read data from instruction register onto bus, then write from bus onto address
+2. `RM WA`: read data from the memory address in the address register and write it to register A
+3. `IC`: increment the program counter
 
 Note that the swap instructions overwrite the address register.
+
+The first 4 bits of the instruction register hold the code for the instruction. The last 8 bits are used to pass addresses or values. Unused bits are set to zero. For example, the instruction to load data from memory address 112 into register A is `0001 0000 0110 0111` (or `1067` in hex).
+
+##### Flags
+
+| Flag  | Bit | Description                         |
+| ----- | --- | ----------------------------------- |
+| Zero  | 0   | 1 if reg A value is 00              |
+| Carry | 1   | 1 if an overflow occurs when adding |
+| Sign  | 2   | 1 if the number is negative         |
+| Sub   | 3   | 1 if subtraction is in process      |
+
+
+#### Emulation
+

@@ -9,6 +9,7 @@
       "cStandard": "${default}",
       "cppStandard": "${default}",
       "intelliSenseMode": "windows-gcc-x86",
+      "configurationProvider": "ms-vscode.cpptools",
       "compilerArgs": [
         ""
       ]
