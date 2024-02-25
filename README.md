@@ -27,14 +27,22 @@ There are 3 flags in the flag register:
 
 #### Instruction set
 
+##### Addressing modes
+
+Several instructions have to specify a source, destination, or both. Both the source and destination can be either one of the four registers A, B, C, or M; or a memory address. The operand byte (`O7` to `O4`) is used to select the source and destination registers; the next two bits are used when copying to or from memory:
+- Registers A, B, C, and M are addressed as `00`, `01`, `10`, and `11` respectively.
+- The first pair of bits (`O7` & `O6`) indicates the source register, while the second pair (`O5` & `O4`) indicates the destination.
+- The third pair of bits indicates whether to copy to or from memory:
+    - If `O3` is set, the source is specified by register M.
+    - If `O2` is set, the destination is specified by register M.
+    - If both are set, the source is specified by register M while the destination is specified by register B.
+
+
+- `MOV`: Copies data from one location to another. The data in the destination is overwritten; the data in the source is not altered.
+
 | Code | Mnemonic | Description  |
 | ---- | -------- | ------------ |
 
-- `MOV`: Copies data from one location to another. Both the source and destination can be either one of the four registers A, B, C, or M; or a memory address. The last four bits in the operand are used to select the source and destination registers:
-     - testing indentation
-
-
-Used to select the source (bits 2 & 3) and destination (bits 0 & 1) registers. If bit 4 is set, moves to (if bit 5 is 0) or from (if bit 5 is 1) the memory address in M.
 
 ### Emulation
 
