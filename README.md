@@ -27,7 +27,14 @@ There are 3 flags in the flag register:
 
 #### Instruction set
 
+| Code | Mnemonic | Description  |
+| ---- | -------- | ------------ |
+
+- `MOV`: Copies data from one location to another. Both the source and destination can be either one of the four registers A, B, C, or M; or a memory address. The last four bits in the operand are used to select the source and destination registers:
+    testing indentation
 
 
-#### Emulation
+Used to select the source (bits 2 & 3) and destination (bits 0 & 1) registers. If bit 4 is set, moves to (if bit 5 is 0) or from (if bit 5 is 1) the memory address in M.
+
+### Emulation
 
