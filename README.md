@@ -25,7 +25,7 @@ There are 3 flags in the flag register:
 | Carry | 1   | 1 if an overflow occurs when adding |
 | Sign  | 2   | 1 if the number is negative         |
 
-#### Instruction set
+#### Instructions
 
 ##### Addressing modes
 
@@ -37,8 +37,22 @@ Several instructions have to specify a source, destination, or both. Both the so
     - If `O2` is set, the destination is specified by register M.
     - If both are set, the source is specified by register M while the destination is specified by register B.
 
+##### Instruction set
 
-- `MOV`: Copies data from one location to another. The data in the destination is overwritten; the data in the source is not altered.
+- `MOV`: Copies data from one **location** to another. The data in the destination is overwritten; the data in the source is not altered.
+- `MVI`: Copies the **operand** data to the accumulator.
+- `LDA`: Loads data from a **memory address** (given as an operand) into the accumulator. Similarly, `LDB`, `LDC`, `LDM`.
+- `ST`: Stores data from the accumulator into a **memory address**. Similarly, `STB`, `STC`, `STM`.
+- `ADD`: Adds the **value** from a register or memory to the value in the accumulator. Modifies flags.
+- `ADC`: 'Add with carry': first adds normally, then if the carry flag is set, increments the sum by 1. Modifies flags.
+- `ADI`: Adds the **operand** to the accumulator. Modifies flags.
+- `ACI`: Adds **operand** with carry. Modifies flags.
+- `SUB`: Subtracts **value** from accumulator. Modifies flags.
+- `SBB`: Subtracts **value** from accumulator with borrow. Modifies flags.
+- `SUI`: Subtracts operand from accumulator. Modifies flags.
+- `SBI`: Subtracts operand from accumulator with borrow. Modifies flags.
+- `INR`: Increments **destination** by 1.
+- `DCR`: Decrements **destination** by 1.
 
 | Code | Mnemonic | Description  |
 | ---- | -------- | ------------ |
