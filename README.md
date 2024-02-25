@@ -11,7 +11,9 @@ This project aims to design and emulate the working of a simple 8-bit processor,
 
 ### Basic architecture
 
-The architecture of the PS-1021 is based on classic 8-bit CPUs such as the Intel 8085. There are three general purpose registers (A or accumulator, B, C), one address register (M), one flag register (F), one instruction register (IR), and one program counter (PC). All registers are 8-bit except IR and PC which are 16-bit. The processor is able to address up to 256 bytes of memory.
+The architecture of the PS-1021 is based on classic 8-bit CPUs such as the Intel 8085. There are three general purpose registers (A or accumulator, B, C), one address register (M), one flag register (F), one instruction register (IR), and one program counter (PC). All registers are 8-bit except IR and PC which are 16-bit.
+
+The processor is able to address up to 256 bytes of memory at a time. .
 
 <!-- How much memory can be addressed might change? M could be split into H and L, then 64 kilobytes could be addressed. -->
 
@@ -24,9 +26,9 @@ There are 3 flags in the flag register:
 | Zero  | 0   | 1 if reg A value is 00              |
 | Carry | 1   | 1 if an overflow occurs when adding |
 | Sign  | 2   | 1 if the number is negative         |
-| <     | 5   | Depends on result of comparison     |
-| =     | 6   | Depends on result of comparison     |
-| >     | 7   | Depends on result of comparison     |
+| <     | 3   | Depends on result of comparison     |
+| =     | 4   | Depends on result of comparison     |
+| >     | 5   | Depends on result of comparison     |
 
 #### Instructions
 
@@ -102,7 +104,7 @@ A list of these instructions with opcodes and short descriptions is given below:
 | 0x15 | JC       | Jump if carry                                |
 | 0x16 | JNC      | Jump if not carry                            |
 | 0x17 | JP       | Jump if not sign                             |
-| 0x18 | JNP      | Jump if sigh                                 |
+| 0x18 | JNP      | Jump if sign                                 |
 | 0x19 | JZ       | Jump if zero                                 |
 | 0x1A | JNZ      | Jump if not zero                             |
 | 0x1B | CMP      | Compare source with accumulator              |
@@ -119,6 +121,7 @@ A list of these instructions with opcodes and short descriptions is given below:
 | 0x26 | POP      | Pop from stack to destination                |
 | 0x27 | CALL     | Call subroutine by operand                   |
 | 0x28 | RET      | Return                                       |
+| 0xFF | HALT     | Halt program                                 |
 
 ### Emulation
 
