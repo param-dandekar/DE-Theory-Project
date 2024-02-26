@@ -6,18 +6,18 @@ typedef uint16_t word;
 // A class representing the memory for the processor
 class Memory {
     private:
-        static const uint64_t MAX_MEMORY = 0xFFFF;
-        byte data[MAX_MEMORY];
+    static const uint64_t MAX_MEMORY = 0xFFFF;
+    byte data[MAX_MEMORY];
 
     public:
-        // Initialise data in all memory addresses to 0
-        void initialise();
+    // Constructor
+    Memory();
 
-        // Read the data at a particular memory address
-        byte read(byte address);
+    // Read the data at a particular memory address
+    byte read(word address);
 
-        // Write data to a particular memory address
-        void write(byte address, byte data);
+    // Write data to a particular memory address
+    void write(word address, byte data);
 };
 
 // A class representing the processor

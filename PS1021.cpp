@@ -1,10 +1,34 @@
-#include "PS1021.h"
+#include <stdio.h>
 
-void Memory::initialise() {
-    for (long i = 0; i < MAX_MEMORY; i++) {
+#include "PS1021.h"
+#include <iostream>
+using namespace std;
+
+Memory::Memory() {
+    for (uint64_t i = 0; i < MAX_MEMORY; i++) {
         this->data[i] = 0x00;
     }
 }
 
+byte Memory::read(word address) {
+    return this->data[address];
+}
 
-Memory m = Memory();
+void Memory::write(word address, byte data) {
+    this->data[address] = data;
+}
+
+
+int main() {
+    
+    Memory m = Memory();
+
+    word addr = 0x0001;
+    byte data = 0x60;
+
+    m.write(addr, data);
+    byte x = m.read(addr);
+
+    return 0;
+
+}
