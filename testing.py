@@ -1,4 +1,4 @@
-from processor import Processor, assemble
+from old.processor import Processor, assemble
 
 p = Processor()
 
@@ -23,3 +23,5 @@ show()
 # print(p._memory)
 
 # CYCLE IS NOT WORKING
+
+

@@ -62,6 +62,9 @@ class Processor {
     // Run for n cycles; if n is -1, keep running until last instruction
     void run(int n);
 
+    // Update flags according to the data in register A
+    void updateFlags(); 
+
     // Copy data from source to destination
     void MOV();
     // Copy operand to accumulator
