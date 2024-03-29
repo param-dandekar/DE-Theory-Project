@@ -3,7 +3,7 @@
 typedef uint8_t byte;
 typedef uint16_t word;
 
-static const uint16_t PROGRAM_START_ADDR = 0x00FF;
+static const uint16_t PROGRAM_START_ADDR = 0x2000;
 
 // A class representing the memory for the processor
 class Memory {

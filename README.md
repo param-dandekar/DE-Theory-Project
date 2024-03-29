@@ -11,11 +11,9 @@ This project aims to design and emulate the working of a simple 8-bit processor,
 
 ### Basic architecture
 
-The architecture of the PS-1021 is based on classic 8-bit CPUs such as the Intel 8085. There are three general purpose registers (A or accumulator, B, C), one address register (M), one flag register (F), one instruction register (IR), and one program counter (PC). All registers are 8-bit except IR and PC which are 16-bit.
+The architecture of the PS-1021 is based on classic 8-bit CPUs such as the Intel 8085. There are three general purpose registers (A or accumulator, B, C), one address register (M), one flag register (F), one instruction register (IR), one program counter (PC), and one stack pointer (SP). All registers are 8-bit except IR, PC, and SP which are 16-bit each.
 
-The processor is able to address up to 256 bytes of memory at a time. .
-
-<!-- How much memory can be addressed might change? M could be split into H and L, then 64 kilobytes could be addressed. -->
+The processor is able to address all 64 kilobytes of memory at a time, using the B and M registers together. The first 8 kilobytes are reserved for variables, and the last 8 kilobytes form the stack. The remaining 48 kilobytes are for storing the program.
 
 #### Flags
 
@@ -126,3 +124,11 @@ A list of these instructions with opcodes and short descriptions is given below:
 
 ### Emulation
 
+The emulation of the processor consists of emulating the fetch-execute cycle:
+1. The instruction is read from memory, and the program counter is incrememted.
+2. The instruction is decoded; in hardware, this would be done using logic circuitry, which is represented as a switch-case block.
+3. The instruction is executed. This involves moving data between memory and registers, altering register data, and basic arithmetic and logic operations; in hardware, this is achieved by setting appropriate read/write enable pins and using an ALU.
+
+## Writing programs
+
+In theory, programs for the processor can be written directly in the machine code described above. However, this quickly becomes very tedious even for simple programs. Thus, we have written a rudimentary programming language which provides abstraction for variable and subroutine definition, and basic operations.
