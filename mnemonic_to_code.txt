@@ -1,0 +1,44 @@
+| Code | Mnemonic | Description                                  |
+| ---- | -------- | -------------------------------------------- |
+| 0x00 | MOV      | Copy data from source to destination         |
+| 0x01 | MVI      | Copy operand to accumulator                  |
+| 0x02 | LDA      | Load data from memory to accumulator         |
+| 0x03 | LDB      | Load data from memory to register B          |
+| 0x04 | LDC      | Load data from memory to register C          |
+| 0x05 | LDM      | Load data from memory to register M          |
+| 0x06 | STA      | Store data to memory from accumulator        |
+| 0x07 | STB      | Store data to memory from register B         |
+| 0x08 | STC      | Store data to memory from register C         |
+| 0x09 | STM      | Store data to memory from register M         |
+| 0x0A | ADD      | Add source to accumulator                    |
+| 0x0B | ADC      | Add source to accumulator with carry         |
+| 0x0C | ADI      | Add operand to accumulator                   |
+| 0x0D | ACI      | Add operand to accumulator with carry        |
+| 0x0E | SUB      | Subtract source from accumulator             |
+| 0x0F | SBB      | Subtract source from accumulator with carry  |
+| 0x10 | SUI      | Subtract operand from accumulator            |
+| 0x11 | SBI      | Subtract operand from accumulator with carry |
+| 0x12 | INR      | Increment data in destination                |
+| 0x13 | DCR      | Decrement data in destination                |
+| 0x14 | JMP      | Jump unconditionally                         |
+| 0x15 | JC       | Jump if carry                                |
+| 0x16 | JNC      | Jump if not carry                            |
+| 0x17 | JP       | Jump if not sign                             |
+| 0x18 | JNP      | Jump if sign                                 |
+| 0x19 | JZ       | Jump if zero                                 |
+| 0x1A | JNZ      | Jump if not zero                             |
+| 0x1B | CMP      | Compare source with accumulator              |
+| 0x1C | CPI      | Compare operand with accumulator             |
+| 0x1D | ANA      | AND source and accumulator                   |
+| 0x1E | ORA      | OR source and accumulator                    |
+| 0x1F | XRA      | XOR source and accumulator                   |
+| 0x20 | ANI      | AND operand and accumulator                  |
+| 0x21 | ORI      | OR operand and accumulator                   |
+| 0x22 | XRI      | XOR operand and accumulator                  |
+| 0x23 | CMA      | Complement accumulator                       |
+| 0x24 | STF      | Set flag register to operand                 |
+| 0x25 | PUSH     | Push source onto stack                       |
+| 0x26 | POP      | Pop from stack to destination                |
+| 0x27 | CALL     | Call subroutine by operand                   |
+| 0x28 | RET      | Return                                       |
+| 0xFF | HALT     | Halt program                                 |

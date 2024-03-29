@@ -44,7 +44,7 @@ Several instructions have to specify a source, destination, or both. Both the so
 
 ##### Instruction set
 
-- `MOV`: Copies data from one **source** to **destination**. The data in the destination is overwritten; the data in the source is not altered.
+- `MOV`: Copies data from **source** to **destination**. The data in the destination is overwritten; the data in the source is not altered.
 - `MVI`: Copies the **operand** data to the accumulator.
 - `LDA`: Loads data from a **memory address** (given as an operand) into the accumulator. Similarly, `LDB`, `LDC`, `LDM`.
 - `STA`: Stores data from the accumulator into a **memory address**. Similarly, `STB`, `STC`, `STM`.
@@ -58,23 +58,24 @@ Several instructions have to specify a source, destination, or both. Both the so
 - `SBI`: Subtracts **operand** from accumulator with borrow. Modifies flags.
 - `INR`: Increments **destination value** by 1.
 - `DCR`: Decrements **destination value** by 1.
-- `JMP`: Jump to a **memory address** unconditionally.
+- `JMP`: 'Jump' to a **program line** unconditionally, i.e. set the program counter to that value. The address is read from the B and M registers.
 - `JC`: Jump if carry flag is set.
 - `JNC`: Jump if carry flag is not set.
 - `JP`: Jump if sign flag is not set.
 - `JNP`: Jump if sign flag is set.
 - `JZ`: Jump if zero flag is set.
 - `JNZ`: Jump if zero flag is not set.
-- `CMP`: Compares **value** to data in accumulator, and accordingly sets the comparison flags.
+- `CMP`: Compares **value** to data in accumulator, and accordingly sets the comparison flags:
+    - If the value of the operand is greater than the accumulator, sets the > flag. If it is smaller, sets the < flag. Otherwise, sets the = flag.
 - `CPI`: Compares **operand** to data in accumulator.
 - `ANA`: Performs logical `AND` on the contents of the accumulator and the **source value** (result stored in accumulator). Similarly, `ORA`, `XRA`.
 - `ANI`: Performs logical `AND` on the contents of the accumulator and the **operand** (result stored in accumulator). Similarly, `ORI`, `XRI`.
 - `CMA`: Complements the value in the accumulator.
 - `STF`: Sets flags according to the **operand**.
-- `PUSH`: The stack pointer is decremented and the **source value** is copied to the new location.
-- `POP`: The data at the location pointed to by the stack pointer is copied to the **destination** and the stack pointer is incremented.
-- `CALL`: The address of the next instruction is pushed onto the stack, and the program counter is set to the address specified by the **operand**.
-- `RET`: The program counter is set to the address specified by the top byte of the stack.
+- `PUSH`: The **source value** is copied to the location of the stack pointer which is then decremented.
+- `POP`: The stack pointer is incremented and the data at the location pointed to by the stack pointer is copied to the **destination**.
+- `CALL`: The addresses of the current instruction are pushed onto the stack, and the program counter is set to the address specified by the **B and M registers**.
+- `RET`: The program counter is set to the address specified by the top two bytes of the stack, which is popped. This overwrites the values of the B and M registers.
 
 A list of these instructions with opcodes and short descriptions is given below:
 
