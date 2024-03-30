@@ -1,0 +1,16 @@
+VARS {
+    a = 3;
+    b = 4;
+    result = 0;
+}
+
+FUNC {
+
+}
+
+MAIN {
+    A <-;
+    result = result + b;
+    a--;
+    a != 0 ? A
+}
