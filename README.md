@@ -129,6 +129,6 @@ The emulation of the processor consists of emulating the fetch-execute cycle:
 2. The instruction is decoded; in hardware, this would be done using logic circuitry, which is represented as a switch-case block.
 3. The instruction is executed. This involves moving data between memory and registers, altering register data, and basic arithmetic and logic operations; in hardware, this is achieved by setting appropriate read/write enable pins and using an ALU.
 
-## Writing programs
+<!-- ## Writing programs
 
-In theory, programs for the processor can be written directly in the machine code described above. However, this quickly becomes very tedious even for simple programs. Thus, we have written a rudimentary programming language which provides abstraction for variable and subroutine definition, and basic operations.
+In theory, programs for the processor can be written directly in the machine code described above. However, this quickly becomes very tedious even for simple programs. Thus, we have written a rudimentary programming language which provides abstraction for variable and subroutine definition, and basic operations. -->

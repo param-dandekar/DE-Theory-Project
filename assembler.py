@@ -38,12 +38,12 @@ def assemble(in_file_name: str, out_file_name: str):
         for line in lines:
             try:
                 instructions += [{'mnemonic': line[0], 'operand': line[1], 'code': conversion[line[0]]}]
-            except KeyError:
-                print(line)
+            except KeyError as e:
+                print('error:', line)
         
         with open(out_file_name, 'wb') as out_file:
             for instruction in instructions:
-                print(instruction)
+                # print(instruction)
                 code = int(instruction['code'], 16)
                 operand = int(instruction['operand'], 16)
                 out_file.write(code.to_bytes())
